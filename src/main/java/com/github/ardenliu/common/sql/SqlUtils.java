@@ -11,9 +11,9 @@ public class SqlUtils {
     /**
      * Replace the schema place holder in SQL with schema value.
      * 
-     * @param sqlTemplateString
-     * @param schema
-     * @return
+     * @param sqlTemplateString the SQL template string 
+     * @param schema the name of database schema
+     * @return the SQL string with schema
      */
     public static String insertSchema(String sqlTemplateString, String schema) {
 
