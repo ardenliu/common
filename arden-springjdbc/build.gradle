@@ -1,12 +1,5 @@
-//plugins {
-    // Apply the java-library plugin to add support for Java Library
-//    id 'java-library'
-//}
-
 dependencies {
-	implementation project(':ardensql')
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+	implementation project(':arden-sql')
+    
 	implementation 'org.springframework:spring-jdbc:5.2.5.RELEASE'
 }
