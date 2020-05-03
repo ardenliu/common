@@ -1,5 +1,7 @@
 package com.github.ardenliu.common.spring.jdbc;
 
+import java.util.Map;
+
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.github.ardenliu.common.sql.SqlUtils;
@@ -7,19 +9,19 @@ import com.github.ardenliu.common.sql.api.DatabaseSchemaAware;
 
 public abstract class SchemaJdbcDaoSupport extends JdbcDaoSupport implements DatabaseSchemaAware {
 
-    private String schemaName;
+    private Map<String, String> schemaMap;
 
     @Override
-    public String getSchemaName() {
-        return this.schemaName;
+    public Map<String, String> getSchemaMap() {
+        return this.schemaMap;
     }
 
-    public void setSchemaName(String schemaName) {
-        this.schemaName = schemaName;
+    public void setSchemaName(Map<String, String> schemaMap) {
+        this.schemaMap = schemaMap;
     }
 
     @Override
     public String convertSql(String sql) {
-        return SqlUtils.insertSchema(sql, getSchemaName());
+        return SqlUtils.insertSchemaMap(sql, getSchemaMap());
     }
 }
