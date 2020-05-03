@@ -1,6 +1,5 @@
 package com.github.ardenliu.common.sql;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -20,21 +19,6 @@ public class SqlUtils {
         Map<String, String> schemaMapWithDot = schemaMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> getSchemaWithDot(e.getValue())));
         StringSubstitutor sub = new StringSubstitutor(schemaMapWithDot);
         return sub.replace(sqlTemplateString);
-    }
-
-    /**
-     * Replace the schema place holder in SQL with schema value.
-     * 
-     * @param sqlTemplateString the SQL template string
-     * @param schema            the name of database schema
-     * @return the SQL string with schema
-     */
-    public static String insertSchema(String sqlTemplateString, String schema) {
-
-        Map<String, String> schemaMap = new HashMap<String, String>();
-        schemaMap.put("schema", schema);
-
-        return insertSchemaMap(sqlTemplateString, schemaMap);
     }
 
     private static String getSchemaWithDot(String schema) {

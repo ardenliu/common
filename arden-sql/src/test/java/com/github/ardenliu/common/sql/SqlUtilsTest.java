@@ -12,16 +12,6 @@ import org.junit.jupiter.api.Test;
 class SqlUtilsTest {
 
     @Test
-    void insertSchema() {
-        String sqlTemplateString = "select * from ${schema}table_a where id = ?";
-
-        assertEquals("select * from test.table_a where id = ?", SqlUtils.insertSchema(sqlTemplateString, "test"));
-        assertEquals("select * from table_a where id = ?", SqlUtils.insertSchema(sqlTemplateString, "  "));
-        assertEquals("select * from table_a where id = ?", SqlUtils.insertSchema(sqlTemplateString, ""));
-        assertEquals("select * from table_a where id = ?", SqlUtils.insertSchema(sqlTemplateString, null));
-    }
-
-    @Test
     void insertSchemaMap() {
         String sqlTemplateString = "select * from ${schema0}table_a a, ${schema1}table_b b where a.id = b.id";
 
