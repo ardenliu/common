@@ -32,7 +32,7 @@ public class JacksonUtils {
      * @param mapper
      * @param json1  the first JSON string
      * @param json2  the second JSON string
-     * @return
+     * @return true if those two JSON strings are equal
      */
     public static boolean equals(ObjectMapper mapper, String json1, String json2) {
         try {
@@ -51,7 +51,7 @@ public class JacksonUtils {
      * 
      * @param json1 the first JSON string
      * @param json2 the second JSON string
-     * @return
+     * @return true if those two JSON strings are equal
      */
     public static boolean equals(String json1, String json2) {
         ObjectMapper mapper = new ObjectMapper();
