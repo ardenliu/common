@@ -7,6 +7,6 @@
  * in the user manual at https://docs.gradle.org/5.6.1/userguide/multi_project_builds.html
  */
 
-rootProject.name = 'ardencommon'
+rootProject.name = 'ArdenCommon'
 
-include 'ardensql','ardenspringjdbc'
+include 'arden-sql','arden-springjdbc'
