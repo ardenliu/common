@@ -18,6 +18,14 @@ ext {
         jdk_javadoc = "https://docs.oracle.com/en/java/javase/$jdk/docs/api/".toString()
     }
 
+	// Dependencies
+	log4j_version = '2.13.2'
+	spring_version = '5.2.5.RELEASE'
+	jackson_version = '2.10.3'
+
+	// Test dependencies
+	junit_version = '5.6.2'
+	
     isRelease = !version.toString().endsWith('-SNAPSHOT')
 }
 
@@ -35,11 +43,10 @@ allprojects {
     sourceCompatibility = project_jdk
     targetCompatibility = project_jdk
 
-    dependencies {
-		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
-    	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
-		testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.6.2'
-    }
+	configurations.all {
+		exclude group: 'ch.qos.logback', module: 'logback-classic'
+    	exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+	}
 
     repositories {
         mavenCentral()
@@ -82,6 +89,17 @@ allprojects {
 subprojects {
     archivesBaseName = "$project.name"
 
+    dependencies {
+    	implementation "org.apache.logging.log4j:log4j-api:$log4j_version"
+		runtimeOnly "org.apache.logging.log4j:log4j-jcl:$log4j_version"
+		runtimeOnly "org.apache.logging.log4j:log4j-jul:$log4j_version"
+		runtimeOnly "org.apache.logging.log4j:log4j-slf4j-impl:$log4j_version"
+	
+		testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
+    	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+		testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.6.2'
+    }
+	
     publishing {
         publications {
             mavenJava(MavenPublication) {
