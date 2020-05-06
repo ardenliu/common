@@ -1,5 +1,5 @@
 dependencies {
-	implementation project(':arden-sql')
+	api project(':arden-sql')
     
-	implementation "org.springframework:spring-jdbc:$spring_version"
+	api "org.springframework:spring-jdbc:$spring_version"
 }
