@@ -1,4 +1,9 @@
 dependencies {
 	implementation "com.google.http-client:google-http-client:$google_http_client_version"
 	implementation "commons-io:commons-io:$commons_io_version"
+
+	// Test dependencies
+    testImplementation "org.testcontainers:junit-jupiter:$testcontainers_version"
+    testImplementation "org.testcontainers:mockserver:$testcontainers_version"
+    testImplementation "org.mock-server:mockserver-client-java:$mockserver_client_java_version"
 }

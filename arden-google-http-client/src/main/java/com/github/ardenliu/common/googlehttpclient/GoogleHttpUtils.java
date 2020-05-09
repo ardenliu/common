@@ -16,11 +16,6 @@ import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
 
-//TODO: for JUNIT:
-//https://developers.google.com/api-client-library/java/google-http-java-client/unit-testing
-//https://www.testcontainers.org/modules/mockserver/
-//https://thecarlhall.wordpress.com/2010/03/25/unit-testing-with-httpclients-localtestserver/
-
 public class GoogleHttpUtils {
     private static final Logger logger = LogManager.getLogger(GoogleHttpUtils.class);
 
