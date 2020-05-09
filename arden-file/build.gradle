@@ -1,0 +1,4 @@
+dependencies {
+	implementation "commons-io:commons-io:$commons_io_version"
+	implementation "org.springframework:spring-core:$spring_version"
+}
