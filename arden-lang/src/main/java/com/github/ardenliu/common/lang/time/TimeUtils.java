@@ -5,6 +5,7 @@ import java.time.MonthDay;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,6 +77,41 @@ public class TimeUtils {
             return null;
         } else {
             return monthDay.getDayOfMonth();
+        }
+    }
+
+    /**
+     * The format of isoTimeString should be java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
+     * <p>
+     * The ISO date-time formatter that formats or parses a date-time without an offset, such as '2011-12-03T10:15:30'.
+     * 
+     * @param isoTimeString input ISO time string
+     * @return the LocalDateTime object
+     */
+    public static LocalDateTime getLocalDateTimeFromIsoLocalString(String isoTimeString) {
+        return LocalDateTime.parse(isoTimeString, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    }
+
+    /**
+     * 
+     * <p>
+     * This is a <code>null</code> safe version of :
+     * </p>
+     * 
+     * <pre>
+     * MonthDay.of(int month, int dayOfMonth)
+     * </pre>
+     * 
+     * @param month      the Integer value of month
+     * @param dayOfMonth the Integer value of day of month
+     * @return the MonthDay object; if inputs have null value, the return will be null.
+     */
+    public static MonthDay getMonthDay(Integer month, Integer dayOfMonth) {
+        if (month == null || dayOfMonth == null) {
+            logger.warn("month[" + month + "] or dayOfMonth[" + dayOfMonth + "] has null value");
+            return null;
+        } else {
+            return MonthDay.of(month, dayOfMonth);
         }
     }
 }
