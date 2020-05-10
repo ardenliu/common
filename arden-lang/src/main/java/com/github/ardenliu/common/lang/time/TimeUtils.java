@@ -14,6 +14,31 @@ public class TimeUtils {
     private static final Logger logger = LogManager.getLogger(TimeUtils.class);
 
     /**
+     * The format of isoTimeString should be java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME
+     * <p>
+     * The ISO date-time formatter that formats or parses a date-time with an offset, such as '2011-12-03T10:15:30+01:00'.
+     * 
+     * @param isoTimeString
+     * @return
+     */
+    public static LocalDateTime getUtcFromIsoOffsetString(String isoTimeString) {
+        return TimeUtils.getLocalDateTimeFromIsoOffsetStringByZoneOffset(isoTimeString, ZoneOffset.UTC);
+    }
+    
+    /**
+     * The format of isoTimeString should be java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME
+     * <p>
+     * The ISO date-time formatter that formats or parses a date-time with an offset, such as '2011-12-03T10:15:30+01:00'.
+     * 
+     * @param isoTimeString
+     * @param zoneOffset
+     * @return
+     */
+    public static LocalDateTime getLocalDateTimeFromIsoOffsetStringByZoneOffset(String isoTimeString, ZoneOffset zoneOffset) {
+        return OffsetDateTime.parse(isoTimeString).toInstant().atOffset(zoneOffset).toLocalDateTime();
+    }
+
+    /**
      * get current LocalDateTime by Zone Id
      * 
      * @param zoneId Selected Time Zone Id
