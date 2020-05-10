@@ -18,13 +18,13 @@ public class TimeUtils {
      * <p>
      * The ISO date-time formatter that formats or parses a date-time with an offset, such as '2011-12-03T10:15:30+01:00'.
      * 
-     * @param isoTimeString
+     * @param isoTimeString the localDateTime of UTC
      * @return
      */
     public static LocalDateTime getUtcFromIsoOffsetString(String isoTimeString) {
         return TimeUtils.getLocalDateTimeFromIsoOffsetStringByZoneOffset(isoTimeString, ZoneOffset.UTC);
     }
-    
+
     /**
      * The format of isoTimeString should be java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME
      * <p>
@@ -32,7 +32,7 @@ public class TimeUtils {
      * 
      * @param isoTimeString
      * @param zoneOffset
-     * @return
+     * @return the localDateTime of given zoneOffset
      */
     public static LocalDateTime getLocalDateTimeFromIsoOffsetStringByZoneOffset(String isoTimeString, ZoneOffset zoneOffset) {
         return OffsetDateTime.parse(isoTimeString).toInstant().atOffset(zoneOffset).toLocalDateTime();
