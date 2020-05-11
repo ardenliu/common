@@ -37,4 +37,26 @@ class XmlUtilsTest {
         Document document = XmlUtils.getDocumentByResource("com/github/ardenliu/common/lang/xml/bad.xml");
         assertNull(document);
     }
+    
+    @Test
+    void getDocumentByResource_namespace() {
+        Document document = XmlUtils.getNsDocumentByResource("com/github/ardenliu/common/lang/xml/testNameSpace.xml");
+        
+        Element rootElement = document.getDocumentElement();
+        rootElement.normalize();
+
+        String namespaceURI = rootElement.getNamespaceURI();
+        assertEquals("http://www.w3.org/TR/html4/", namespaceURI);
+        
+        assertEquals("h:table", rootElement.getNodeName());
+        assertEquals("table", rootElement.getLocalName());
+     
+        NodeList nodeList = rootElement.getElementsByTagNameNS("http://www.w3.org/TR/html4/", "td");
+        assertEquals(1, nodeList.getLength());
+        
+        Node node = nodeList.item(0);
+        assertEquals(Node.ELEMENT_NODE, node.getNodeType());
+        Element tdElement = (Element) node;
+        assertEquals("Apples", tdElement.getTextContent());
+    }
 }
