@@ -1,0 +1,5 @@
+dependencies {
+	api "org.jdom:jdom2:$jdom2_version"
+	implementation "org.springframework:spring-core:$spring_version"
+	implementation "org.apache.commons:commons-lang3:$commons_lang3_version"
+}
