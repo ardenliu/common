@@ -40,4 +40,8 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public static int fileNumbers(Path directory) {
+        return org.apache.commons.io.FileUtils.listFiles(directory.toFile(), null, false).size();
+    }
 }
