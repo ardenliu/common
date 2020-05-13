@@ -7,6 +7,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -138,5 +139,25 @@ public class TimeUtils {
         } else {
             return MonthDay.of(month, dayOfMonth);
         }
+    }
+
+    /**
+     * <p>
+     * This is a <code>null</code> safe version of :
+     * </p>
+     * 
+     * <pre>
+     * MonthDay.parse(String monthDayString)
+     * </pre>
+     * 
+     * @param monthDayString the String value of MonthDay
+     * @return the MonthDay object; if input string is null, the return will be null.
+     */
+    public static MonthDay getMonthDay(String monthDayString) {
+        if (StringUtils.isEmpty(monthDayString)) {
+            return null;
+        }
+
+        return MonthDay.parse(monthDayString);
     }
 }
