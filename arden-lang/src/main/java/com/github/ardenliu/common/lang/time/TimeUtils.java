@@ -1,5 +1,6 @@
 package com.github.ardenliu.common.lang.time;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.MonthDay;
 import java.time.OffsetDateTime;
@@ -50,12 +51,45 @@ public class TimeUtils {
     }
 
     /**
+     * The format of isoTimeString should be java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
+     * <p>
+     * The ISO date-time formatter that formats or parses a date-time without an offset, such as '2011-12-03T10:15:30'.
+     * 
+     * @param isoTimeString input ISO time string
+     * @return the LocalDateTime object
+     */
+    public static LocalDateTime getLocalDateTimeFromIsoLocalString(String isoTimeString) {
+        return LocalDateTime.parse(isoTimeString, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    }
+
+    /**
      * get current UTC LocalDataTime
      * 
      * @return Current UTC LocalDataTime
      */
     public static LocalDateTime getUtcLocalDateTime() {
         return TimeUtils.getLocalDateTimeByZoneId(ZoneOffset.UTC);
+    }
+
+    /**
+     * Obtains an instance of LocalDate from a text string such as 2007-12-03.
+     * <p>
+     * This is a <code>null</code> safe version of :
+     * </p>
+     * 
+     * <pre>
+     * LocalDate.parse()
+     * </pre>
+     * 
+     * @param text the text to parse such as "2007-12-03", can be null
+     * @return the parsed local date; if input string is null, the return will be null.
+     */
+    public static LocalDate getLocalDate(String text) {
+        if (StringUtils.isEmpty(text)) {
+            return null;
+        }
+
+        return LocalDate.parse(text);
     }
 
     /**
@@ -104,18 +138,6 @@ public class TimeUtils {
         } else {
             return monthDay.getDayOfMonth();
         }
-    }
-
-    /**
-     * The format of isoTimeString should be java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
-     * <p>
-     * The ISO date-time formatter that formats or parses a date-time without an offset, such as '2011-12-03T10:15:30'.
-     * 
-     * @param isoTimeString input ISO time string
-     * @return the LocalDateTime object
-     */
-    public static LocalDateTime getLocalDateTimeFromIsoLocalString(String isoTimeString) {
-        return LocalDateTime.parse(isoTimeString, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 
     /**
