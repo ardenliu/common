@@ -24,17 +24,17 @@ public class ResourcesUtils {
                 String pathOfResource = resource.getURL().getPath();
                 int lastIndex = pathOfResource.lastIndexOf(resourcePath);
                 if (lastIndex == -1) {
-                    logger.error("cannot handle pathOfResource[{}]", pathOfResource);
+                    logger.error("cannot find[{}] from pathOfResource[{}]", resourcePath, pathOfResource);
                     continue;
                 }
                 String relativePath = pathOfResource.substring(lastIndex, pathOfResource.length());
                 Path tergetPath = Paths.get(targetRoot.toString(), relativePath);
-                if (resource.isReadable() & resource.isFile()) {
+                if (resource.isReadable()) {
                     logger.debug("creating file[{}]", tergetPath);
                     File tergetFile = tergetPath.toFile();
                     org.apache.commons.io.FileUtils.copyURLToFile(resource.getURL(), tergetFile);
 
-                } else if (resource.getFile().isDirectory()) {
+                } else {
                     logger.debug("creating directory[{}]", tergetPath);
                     Files.createDirectories(tergetPath);
                 }
