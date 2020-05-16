@@ -9,6 +9,7 @@
 
 rootProject.name = 'ArdenCommon'
 
+//include 'arden-testjar'
 include 'arden-sql'
 include 'arden-springjdbc'
 include 'arden-jackson'
