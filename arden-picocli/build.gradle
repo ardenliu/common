@@ -1,0 +1,3 @@
+dependencies {
+	api "info.picocli:picocli-spring-boot-starter:$picocli_version"
+}
