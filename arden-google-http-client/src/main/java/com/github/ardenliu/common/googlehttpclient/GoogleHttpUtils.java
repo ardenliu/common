@@ -35,24 +35,29 @@ public class GoogleHttpUtils {
     }
 
     private static InputStream getContentAsInputStream(GenericUrl genericUrl, int timeout) {
-        // TODO: handle local file
-//      String protocol = genericUrl.toURL().getProtocol();
-//      if ("file".equals(protocol)) {
-//          
-//      }
-//      
-        try {
-            HttpRequestFactory requestFactory = new NetHttpTransport().createRequestFactory();
+        String protocol = genericUrl.toURL().getProtocol();
 
-            HttpRequest request = requestFactory.buildGetRequest(genericUrl);
-            request.setConnectTimeout(timeout);
-            request.setReadTimeout(timeout);
+        if ("http".equals(protocol) || "https".equals(protocol)) {
+            try {
+                HttpRequestFactory requestFactory = new NetHttpTransport().createRequestFactory();
 
-            HttpResponse response = request.execute();
-            return response.getContent();
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
-            throw new RuntimeException(e.getMessage(), e);
+                HttpRequest request = requestFactory.buildGetRequest(genericUrl);
+                request.setConnectTimeout(timeout);
+                request.setReadTimeout(timeout);
+
+                HttpResponse response = request.execute();
+                return response.getContent();
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        } else {
+            try {
+                return genericUrl.toURL().openStream();
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+                throw new RuntimeException(e.getMessage(), e);
+            }
         }
     }
 
