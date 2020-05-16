@@ -4,5 +4,5 @@ dependencies {
 	implementation "org.springframework:spring-core:$spring_version"
 	implementation "com.google.guava:guava:$guava_version"
 	
-	testRuntimeOnly "com.github.ardenliu:arden-testjar:$project_version"
+	testRuntimeOnly "com.github.ardenliu:arden-testjar:0.0.3"
 }
