@@ -32,6 +32,7 @@ ext {
 	google_http_client_version = '1.35.0'	// arden-google-http-client
 	jdom2_version = '2.0.6'					// arden-jdom2
 	guava_version = '29.0-jre' 				// arden-file
+	picocli_version = '4.3.2'				// arden-picocli
 
 	// Test dependencies
 	junit_version = '5.6.2'
