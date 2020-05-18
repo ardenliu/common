@@ -2,6 +2,7 @@ package com.github.ardenliu.common.lang.xml;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -9,7 +10,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 class XmlUtilsTest {
-
+    
     @Test
     void getDocumentByResource() {
         Document document = XmlUtils.getDocumentByResource("com/github/ardenliu/common/lang/xml/test.xml");
@@ -34,8 +35,9 @@ class XmlUtilsTest {
 
     @Test
     void getDocumentByResource_bad() {
-        Document document = XmlUtils.getDocumentByResource("com/github/ardenliu/common/lang/xml/bad.xml");
-        assertNull(document);
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            XmlUtils.getDocumentByResource("com/github/ardenliu/common/lang/xml/bad.xml");
+        });
     }
     
     @Test
