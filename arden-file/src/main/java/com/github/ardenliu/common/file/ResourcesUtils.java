@@ -1,11 +1,16 @@
 package com.github.ardenliu.common.file;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -41,6 +46,14 @@ public class ResourcesUtils {
                 }
             }
         } catch (Exception e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+    public static String resourceToString(final String resourcePath) {
+        try {
+            return IOUtils.toString(new ClassPathResource(resourcePath).getInputStream(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
