@@ -39,4 +39,12 @@ class ResourcesUtilsTest {
         String contentOfTxt2File = org.apache.commons.io.FileUtils.readFileToString(txt2File.toFile() , StandardCharsets.UTF_8);
         assertEquals("222", contentOfTxt2File);
     }
+    
+    @Test
+    void resourceToString() {
+        String resourcePath = "com/github/ardenliu/common/file/resourcestest/1.txt";
+        String content = ResourcesUtils.resourceToString(resourcePath);
+        System.out.println(content);
+        assertEquals("111", content);
+    }
 }
