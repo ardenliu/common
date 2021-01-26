@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.1/graphml.xsd">
+	<key id="labelV" for="node" attr.name="labelV" attr.type="string"></key>
+	<key id="name" for="node" attr.name="name" attr.type="string"></key>
+	<key id="labelE" for="edge" attr.name="labelE" attr.type="string"></key>
+	<key id="weight" for="edge" attr.name="weight" attr.type="double"></key>
+	<graph id="G" edgedefault="directed">
+		<node id="2">
+			<data key="labelV">person</data>
+			<data key="name">stephen</data>
+		</node>
+		<node id="0">
+			<data key="labelV">person</data>
+			<data key="name">marko</data>
+		</node>
+		<edge id="4" source="0" target="2">
+			<data key="labelE">knows</data>
+			<data key="weight">0.75</data>
+		</edge>
+	</graph>
+</graphml>
