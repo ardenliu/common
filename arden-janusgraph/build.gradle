@@ -1,0 +1,9 @@
+dependencies {
+	implementation "org.janusgraph:janusgraph-driver:$janusgraph_driver_version"
+	implementation "org.apache.tinkerpop:gremlin-driver:$gremlin_driver_version"
+	implementation "org.apache.tinkerpop:tinkergraph-gremlin:$gremlin_driver_version"
+	
+	testImplementation project(':arden-file')
+	testImplementation "org.xmlunit:xmlunit-core:$xmlunit_version"
+	testImplementation "org.xmlunit:xmlunit-assertj:$xmlunit_version"
+}
