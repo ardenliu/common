@@ -23,6 +23,8 @@ import com.github.ardenliu.common.file.ResourcesUtils;
 class GraphMlLoaderTest {
     
     static Graph newGraph;
+    
+    static Graph newGraphWithDirectionEdge;
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
@@ -39,6 +41,23 @@ class GraphMlLoaderTest {
         System.out.println(knows);
         
         System.out.println(newGraph);
+        
+        
+        newGraphWithDirectionEdge = TinkerGraph.open();
+        graphTraversalSource = newGraphWithDirectionEdge.traversal();
+        
+        marko = graphTraversalSource.addV("person").property("name", "marko").next();
+        System.out.println(marko);
+               
+        stephen = graphTraversalSource.addV("person").property("name", "stephen").next();
+        System.out.println(stephen);
+        
+        knows = graphTraversalSource.V(marko).addE("knows").from(marko).to(stephen).property("weight", 0.75).next();
+        System.out.println(knows);
+        knows = graphTraversalSource.V(stephen).addE("knows").from(stephen).to(marko).property("weight", 0.55).next();
+        System.out.println(knows);
+        
+        System.out.println(newGraphWithDirectionEdge);
     }
     
     @Test
@@ -75,6 +94,18 @@ class GraphMlLoaderTest {
         .ignoreWhitespace()
         .withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byNameAndAttributes("id", "key")))
         .areIdentical();
+    }
+
+    @Test
+    void writeGraph(@TempDir Path tempDir) {
+        Path target = Paths.get(tempDir.toString(), "GraphMlLoaderTest_DirectionEdge.xml");
+
+        GraphMlLoader.writeGraph(target.toFile(), newGraphWithDirectionEdge);
+        
+        Graph graph = GraphMlLoader.loadGraphFromFile(target.toString());
+        System.out.println(graph);
+
+        verify(graph);
     }
     
     private void verify(Graph graph) {

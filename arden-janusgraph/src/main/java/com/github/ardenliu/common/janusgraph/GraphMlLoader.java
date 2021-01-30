@@ -1,6 +1,8 @@
 package com.github.ardenliu.common.janusgraph;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -29,6 +31,15 @@ public class GraphMlLoader {
         }
     }
 
+    public static void writeGraph(File file, Graph graph) {
+        try (FileOutputStream outputStream = new FileOutputStream(file)) {
+            GraphMlLoader.writeGraph(outputStream, graph);
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+            throw new ArdenJanusGraphException(e.getMessage(), e);
+        }
+    }
+    
     public static void writeGraph(OutputStream outputStream, Graph graph) {
         try {
             GraphMLWriter graphMlWriter = GraphMLWriter.build().create();
